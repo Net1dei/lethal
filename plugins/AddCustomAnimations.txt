@@ -1,0 +1,52 @@
+import mixamo animations workflow
+for DanceOff mod by TDP
+
+1. Make unity project
+recommended version: 2022.3.9f1
+recommended project: 3D (HDRP)
+import "customanim.unitypackage"
+
+2. Get animation
+upload "lcsuitoriginalsimplerig.fbx" to mixamo
+choose animation
+download
+import to unity project
+
+3. Convert animation
+open "importanimcontroller"
+add imported animation (probably called "mixamo.com")
+go to "animationsbundle/DanceOff" folder
+create new AnimationClip and name it whatever your animation is called
+at the bottom of the inspector window assign the AnimationClip to AssetBundle "animationsbundle"
+-
+open "AnimationConvert" scene
+select "bind player -> ScavengerModel -> metarig" in scene
+add created AnimationClip to "Record Anim" script
+press play and wait for animation to end
+both models should be performing your downloaded animation
+as soon as it ends exit play mode
+(for some reason the legs might not move but don't worry they will in the converted animation)
+clear the AnimationScript reference in "Record Anim" script so it won't overwrite again by accident
+
+4. Export animation
+open "animatorbundle/Controller" folder
+open "DanceOffMetarigLocal.controller" and go to "EmotesNoArms" layer
+replace an animation with your new AnimationClip from "animationsbundles/newanims"
+to make the animation loop, make a transition from the "Dance?" state to itself and tweak it as needed
+open "DanceOffMetarigOthers.controller" and do the same
+(Dance1 is Emote1, Dance2 is Emote2, etc.)
+-
+in the menu bar at the top of the unity editor click "Build AssetBundles" in "AssetBundles" tab
+(you may have to wait a minute)
+open "DanceOff/Built AssetBundles" folder in windows explorer
+copy "animationsbundle" and "animatorbundle"
+go to DanceOff mod folder location
+(<Lethal Company or mod profile folder>/BepInEx/plugins/DanceOff)
+delete existing assetbundles in "Animations" folder
+paste new assetbundles in "Animations" folder
+
+5. Done
+start the game and press the corresponding keybind
+your animation should now play
+everyone in your lobbies need the same assetbundles to see the same animations
+I hope it works for you <3
